@@ -1,6 +1,6 @@
 # Fit Kinetics
 
-A MATLAB-based electrochemical kinetics fitting toolbox for analyzing and modeling electrochemical reaction data. This project provides tools for fitting experimental current-voltage data to various electrochemical reaction models including ICET (Interfacial Charge Transfer), ECIT (Electrochemical Charge Transfer), BV (Butler-Volmer), and uniformly valid models.
+A MATLAB-based electrochemical kinetics fitting toolbox for analyzing and modeling electrochemical reaction data. This project provides tools for fitting experimental current-voltage data to various electrochemical reaction models including ICET (Ion Coupled Electron Transfer), ECIT (Electron Coupled Ion Transfer), BV (Butler-Volmer), and uniformly valid models.
 
 ## Overview
 
@@ -14,15 +14,15 @@ This toolbox is designed for researchers and engineers working with electrochemi
 
 ## Supported Reaction Models
 
-### 1. ICET (Interfacial Charge Transfer) Models
-- **ICET_symmetric**: Symmetric charge transfer with equal forward/reverse barriers
-- **ICET_asymmetric**: Asymmetric charge transfer with different forward/reverse barriers
+### 1. ICET (Ion Coupled Electron Transfer) Models when Reactions are IT Limited
+- **ICET_symmetric**: Symmetric ICET with equal forward/reverse barriers
+- **ICET_asymmetric**: Asymmetric ICETwith different forward/reverse barriers
 - **ICET_symmetric_film**: ICET with film resistance effects
 - **ICET_asymmetric_film**: Asymmetric ICET with film resistance
 - **ICET_symmetric_film2**: Simplified symmetric ICET with film
 - **ICET_asymmetric_film2**: Simplified asymmetric ICET with film
 
-### 2. ECIT (Electrochemical Charge Transfer) Models
+### 2. ECIT (Electron Coupled Ion Transfer) Models when Reactions are ET Limited
 - **ECIT_normal**: Standard electrochemical charge transfer
 - **ECIT_normal2**: Modified ECIT model
 - **ECIT_i0_fix**: ECIT with fixed exchange current
