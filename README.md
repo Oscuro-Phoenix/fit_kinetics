@@ -191,10 +191,7 @@ fit_kinetics/
 
 ## Example Data
 
-The project includes example data in the `x_0.60/` directory (referenced in `plot_data.m`):
-- 14 experimental datasets (exp1.csv through exp14.csv)
-- Current-voltage measurements at different conditions
-- Used for testing and demonstration
+TBD
 
 ## Contributing
 
