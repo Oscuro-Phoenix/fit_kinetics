@@ -6,7 +6,7 @@ function I_th = ICET_film(etaf,k0,lambda,b_r,b_o,w_ads,R_film,cc,c_fct,activity,
         c_plus = activity*exp(-w_ads)/(1+activity*exp(-w_ads));  %new
        i0 = k0*exp(-alpha*(1-alpha)*(b_r+b_o))*c_plus^(1-alpha)*((1.0-cc).^c_fct)*(cc^alpha);
        opts = optimset('display', 'none');
-       I_th = fzero(@(x) get_loss(x,etaf,i0,b_o,b_r,cc,c_plus,lmbdr,alpha,R_film),(exp(-alpha*etaf)-exp((1-alpha)*etaf)),opts);
+       I_th = fzero(@(x) get_loss(x,etaf,i0,b_o,b_r,cc,c_plus,lmbdr,alpha,R_film),-etaf/(1+i0*R_film),opts);
        I_th = i0*I_th;
 end
 

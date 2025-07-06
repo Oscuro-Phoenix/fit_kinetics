@@ -34,5 +34,5 @@ function I_th = uniformly_valid(etaf,k0,lambda,b_red,b_ox,w_ads,cc,c_fct,activit
                  + (1/2)*(erf(sqrt(A)*(B-b_red))-erf(sqrt(A)*(B-etaf)));
         end
 %       Current
-        I_th = (k0*M)*((1.0-cc).^c_fct)*(c_plus*kred-cc*kox);   %new
+        I_th = (k0)*((1.0-cc).^c_fct)*(c_plus*kred-cc*kox);   %new
 end

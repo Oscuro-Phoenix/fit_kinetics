@@ -19,9 +19,9 @@ elseif rxn_type == "ICET_asymmetric_film"
     p = [k0;lmbda;b_r;b_o;w_ads;R_film];
 elseif rxn_type == "ICET_asymmetric_film2" 
     Numtemps = (N-4-num_unique);
-    k0    = (tht(1));
-    b_r = 10+abs(tht(2));
-    b_o = 10+abs(tht(3));
+    k0 = tht(1);
+    b_r = abs(tht(2));
+    b_o = abs(tht(3));
     w_ads = tht(4);
     R_film = abs(tht(5:end));
     p = [k0;b_r;b_o;w_ads;R_film];
@@ -41,6 +41,18 @@ elseif rxn_type == "uniformly_valid"
     b_o = abs(tht(4));
     w_ads = tht((5:end));
     p = [k0;lmbda;b_r;b_o;w_ads];
+elseif rxn_type == "uniformly_valid_i0_fix"
+    lmbda = abs(tht(1));
+    b_r = abs(tht(2));
+    b_o = abs(tht(3));
+    w_ads = tht((4:end));
+    p = [lmbda;b_r;b_o;w_ads];
+elseif rxn_type == "uniformly_valid_i0_fix_wfix"
+    lmbda = abs(tht(1));
+    b_r = abs(tht(2));
+    b_o = abs(tht(3));
+    w_ads = tht(4);
+    p = [lmbda;b_r;b_o;w_ads];
 elseif rxn_type == "ICET_symmetric"
     Numtemps = (N-3);
     k0    = (tht(1));
@@ -79,9 +91,17 @@ elseif rxn_type == "ECIT_normal"
     Numtemps  = (N-3);
     k0 = (tht(1));
     lmbda = abs(tht(2));
-    dG = lmbda/4 + abs(tht(3));
+    dG = abs(tht(3));
     w_ads = tht(4:end);
     p = [k0;lmbda;dG;w_ads];
+elseif rxn_type == "ECIT_i0_fix"
+    lmbda = abs(tht(1));
+    w_ads = tht(2:end);
+    p = [lmbda;w_ads];
+elseif rxn_type == "ECIT_i0_fix_wfix"
+    lmbda = abs(tht(1));
+    w_ads = tht(2);
+    p = [lmbda;w_ads];
 elseif rxn_type == "uniformly_valid2"
     Numtemps = 5;
     k0    = tht(1);

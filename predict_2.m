@@ -1,4 +1,4 @@
-function [f_mdl,I_ex_pred] = predict_2(x,tht,size_vec,temp_vec,conc_vec,rxn_type,activity)
+function [f_mdl,I_ex_pred] = predict_2(x,tht,size_vec,temp_vec,conc_vec,rxn_type,activity,slopes)
     Ndata = length(x);
     f_mdl = zeros(Ndata,1);
     I_ex_pred = zeros(size(temp_vec));
@@ -21,9 +21,61 @@ function [f_mdl,I_ex_pred] = predict_2(x,tht,size_vec,temp_vec,conc_vec,rxn_type
             k=k+1;
         end
     end
+    elseif rxn_type == "ECIT_i0_fix"
+       for j=1:N
+            I_ex_pred(j) = slopes(j);
+            for i = 1:size_vec(j)
+                if j > 1
+                f_mdl(k) = ECIT_i0_fix(x(i+sum(size_vec(1:j-1))),slopes(j),p(1),p(1+j),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                else
+                f_mdl(k) = ECIT_i0_fix(x(i),slopes(j),p(1),p(1+j),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                end
+                k=k+1;
+            end
+       end
+        elseif rxn_type == "ECIT_i0_fix_wfix"
+       for j=1:N
+            I_ex_pred(j) = slopes(j);
+            for i = 1:size_vec(j)
+                if j > 1
+                f_mdl(k) = ECIT_i0_fix(x(i+sum(size_vec(1:j-1))),slopes(j),p(1),p(2),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                else
+                f_mdl(k) = ECIT_i0_fix(x(i),slopes(j),p(1),p(2),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                end
+                k=k+1;
+            end
+       end
+    elseif rxn_type == "uniformly_valid_i0_fix"
+        for j=1:N
+            I_ex_pred(j) = slopes(j);
+            for i = 1:size_vec(j)
+                if j > 1
+                f_mdl(k) = uniformly_valid_old_i0_fix(x(i+sum(size_vec(1:j-1))),...
+                    slopes(j),p(1),p(2),p(3),p(3+j),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                else
+                f_mdl(k) = uniformly_valid_old_i0_fix(x(i),...
+                    slopes(j),p(1),p(2),p(3),p(3+j),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                end
+                k=k+1;
+            end
+        end
+     elseif rxn_type == "uniformly_valid_i0_fix_wfix"
+        for j=1:N
+            I_ex_pred(j) = slopes(j);
+            for i = 1:size_vec(j)
+                if j > 1
+                f_mdl(k) = uniformly_valid_old_i0_fix(x(i+sum(size_vec(1:j-1))),...
+                    slopes(j),p(1),p(2),p(3),p(4),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                else
+                f_mdl(k) = uniformly_valid_old_i0_fix(x(i),...
+                    slopes(j),p(1),p(2),p(3),p(4),conc_vec(j),c_fct,activity,temp_vec(j));   %new arguments
+                end
+                k=k+1;
+            end
+        end
     elseif rxn_type == "ICET_asymmetric_film" 
     for j=1:N
-        I_ex_pred(j) = ICET_exchange(p(1),p(2),p(3),p(4),p(4+j),conc_vec(j),c_fct,activity,temp_vec(j));
+        I_ex_pred(j) = ECIT_i0_fix(p(1),p(2),p(3),p(4),p(4+j),conc_vec(j),c_fct,activity,temp_vec(j));
         for i = 1:size_vec(j)
             nval =0;
             if j > (N-num_unique+1) 
@@ -191,10 +243,10 @@ elseif rxn_type == "ICET_asymmetric_film2"
         for i = 1:size_vec(j)
             if j > 1
             f_mdl(k) = Linear(x(i+sum(size_vec(1:j-1))),...
-                p(1+nval),conc_vec(j));   %new arguments
+                p(1+nval));   %new arguments
             else
             f_mdl(k) = Linear(x(i),...
-                p(1+nval),conc_vec(j));   %new arguments
+                p(1+nval));   %new arguments
             end
             k=k+1;
         end

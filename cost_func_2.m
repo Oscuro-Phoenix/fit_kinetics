@@ -1,6 +1,6 @@
-function c_cost = cost_func_2(tht,x,y,size_vec,temp_vec,conc_vec,rxn_type,activity)
+function c_cost = cost_func_2(tht,x,y,size_vec,temp_vec,conc_vec,rxn_type,activity,slopes)
 %   Model Predictions
-    [f_x,I_ex_pred] = predict_2(x,tht,size_vec,temp_vec,conc_vec,rxn_type,activity);
+    [f_x,I_ex_pred] = predict_2(x,tht,size_vec,temp_vec,conc_vec,rxn_type,activity,slopes);
 %   Calculate the cost function
     if rxn_type == "ICET_symmetric" || rxn_type == "ICET_asymmetric" || ...
             rxn_type == "ICET_symmetric_film" || rxn_type == "ICET_asymmetric_film" ...

@@ -35,6 +35,20 @@ elseif rxn_type == "uniformly_valid"
     b_o = abs(tht(4));
     w_ads = tht((5:end));
     params_name = {'k0','lambda','beta_red','beta_ox','w_ads'};
+elseif rxn_type == "uniformly_valid_i0_fix"
+    Numtemps = (N-4);
+    lmbda = abs(tht(1));
+    b_r = abs(tht(2));
+    b_o = abs(tht(3));
+    w_ads = tht((4:end));
+    params_name = {'lambda','beta_red','beta_ox','w_ads'};
+elseif rxn_type == "uniformly_valid_i0_fix_wfix"
+    Numtemps = (N-4);
+    lmbda = abs(tht(1));
+    b_r = abs(tht(2));
+    b_o = abs(tht(3));
+    w_ads = tht(4);
+    params_name = {'lambda','beta_red','beta_ox','w_ads'};
 elseif rxn_type == "ICET_symmetric"
     Numtemps = (N-3);
     k0    = (tht(1));
@@ -57,6 +71,16 @@ elseif rxn_type == "ICET_symmetric_film2"
     w_ads = tht(3);
     R_film = abs(tht(4:end));
     params_name = {'k0','beta_red/ox','w_ads','R_film'};
+elseif rxn_type == "ECIT_i0_fix"
+    Numtemps  = 4;
+    lmbda = abs(tht(1));
+    w_ads = tht(2:end);
+    params_name = {'lambda','w_ads'};
+elseif rxn_type == "ECIT_i0_fix_wfix"
+    Numtemps  = 4;
+    lmbda = abs(tht(1));
+    w_ads = tht(2);
+    params_name = {'lambda','w_ads'};
 elseif rxn_type == "ECIT_normal2"
     Numtemps  = 4;
     k0 = (tht(1));
@@ -76,7 +100,7 @@ elseif rxn_type == "ECIT_normal"
     Numtemps  = (N-3);
     k0 = (tht(1));
     lmbda = abs(tht(2));
-    dG = lmbda/4 + abs(tht(3));
+    dG =  abs(tht(3));
     w_ads = tht(4:end);
     params_name = {'k0','lambda','dG_IT','w_ads'};
 elseif rxn_type == "uniformly_valid2"
@@ -134,6 +158,18 @@ elseif rxn_type == "BV_film"
         fprintf(formatSpace,params_name{2},alpha);
         fprintf(formatSpace,params_name{3},R_film(1));
         fprintf(formatSp2,R_film(2:end));
+elseif rxn_type == "ECIT_i0_fix"
+         fprintf(formatSpace,params_name{1},lmbda);
+elseif rxn_type == "ECIT_i0_fix_wfix"
+         fprintf(formatSpace,params_name{1},lmbda);
+elseif rxn_type == "uniformly_valid_i0_fix"
+        fprintf(formatSpace,params_name{1},lmbda);
+        fprintf(formatSpace,params_name{2},b_r);
+        fprintf(formatSpace,params_name{3},b_o);
+elseif rxn_type == "uniformly_valid_i0_fix_wfix"
+        fprintf(formatSpace,params_name{1},lmbda);
+        fprintf(formatSpace,params_name{2},b_r);
+        fprintf(formatSpace,params_name{3},b_o);
 elseif size(params_name,2) == 6
      fprintf(formatSpace,params_name{1},k0);
         fprintf(formatSpace,params_name{2},lmbda);

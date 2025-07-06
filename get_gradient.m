@@ -1,5 +1,5 @@
-function J = get_gradient(tht,x,size_vec,temp_vec,conc_vec,rxn_type,activity)
-    func = @(t) predict_2(x,t,size_vec,temp_vec,conc_vec,rxn_type,activity);
+function J = get_gradient(tht,x,size_vec,temp_vec,conc_vec,rxn_type,activity,slopes)
+    func = @(t) predict_2(x,t,size_vec,temp_vec,conc_vec,rxn_type,activity,slopes);
     N = size(tht,1);
     M = size(x,1);
     J = zeros(M,N);
